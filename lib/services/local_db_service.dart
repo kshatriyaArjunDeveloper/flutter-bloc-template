@@ -1,4 +1,5 @@
 import 'package:boilerplate/domain/model/user/auth_token_model.dart';
+import 'package:boilerplate/domain/model/user/device_info_model.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -13,6 +14,7 @@ class LocalDbService {
     isar = await Isar.open(
       [
         AuthTokenModelSchema,
+        DeviceInfoModelSchema,
       ],
       directory: dir.path,
     );

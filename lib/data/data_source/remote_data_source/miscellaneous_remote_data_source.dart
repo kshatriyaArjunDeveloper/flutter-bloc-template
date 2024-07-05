@@ -8,7 +8,6 @@ import 'package:dio/dio.dart';
 
 class MiscellaneousRemoteDataSource {
   final Dio _dio = NetworkService.unAuthenticated().dio;
-  final Dio _authenticatedDio = NetworkService.authenticated().dio;
 
   // Making Singleton
   MiscellaneousRemoteDataSource._();

@@ -18,7 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SelectLanguageState {
   List<LanguageResponseDto> get languageList =>
       throw _privateConstructorUsedError;
-
   ScreenStateUIModel get screenState => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,7 +30,6 @@ abstract class $SelectLanguageStateCopyWith<$Res> {
   factory $SelectLanguageStateCopyWith(
           SelectLanguageState value, $Res Function(SelectLanguageState) then) =
       _$SelectLanguageStateCopyWithImpl<$Res, SelectLanguageState>;
-
   @useResult
   $Res call(
       {List<LanguageResponseDto> languageList, ScreenStateUIModel screenState});
@@ -44,7 +42,6 @@ class _$SelectLanguageStateCopyWithImpl<$Res, $Val extends SelectLanguageState>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -73,7 +70,6 @@ abstract class _$$SelectLanguageStateImplCopyWith<$Res>
   factory _$$SelectLanguageStateImplCopyWith(_$SelectLanguageStateImpl value,
           $Res Function(_$SelectLanguageStateImpl) then) =
       __$$SelectLanguageStateImplCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -116,7 +112,6 @@ class _$SelectLanguageStateImpl implements _SelectLanguageState {
       : _languageList = languageList;
 
   final List<LanguageResponseDto> _languageList;
-
   @override
   @JsonKey()
   List<LanguageResponseDto> get languageList {
@@ -164,10 +159,8 @@ abstract class _SelectLanguageState implements SelectLanguageState {
 
   @override
   List<LanguageResponseDto> get languageList;
-
   @override
   ScreenStateUIModel get screenState;
-
   @override
   @JsonKey(ignore: true)
   _$$SelectLanguageStateImplCopyWith<_$SelectLanguageStateImpl> get copyWith =>

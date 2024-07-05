@@ -21,7 +21,6 @@ mixin _$HomeScreenState {
     required TResult Function() initial,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
@@ -33,13 +32,11 @@ mixin _$HomeScreenState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,

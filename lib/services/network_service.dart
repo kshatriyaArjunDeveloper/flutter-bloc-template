@@ -103,12 +103,12 @@ class _TokenInterceptor extends Interceptor {
 
   Future<Result<LogInResponseDto>> _fetchNewAccessToken() async {
     final AuthTokenModel? token = await _userLocalDataSource.getAuthToken();
-    final Dio _dio = NetworkService.unAuthenticated().dio;
-    _dio.options.headers = {
+    final Dio dio = NetworkService.unAuthenticated().dio;
+    dio.options.headers = {
       'Authorization': 'Bearer ${token!.refreshToken}',
     };
     try {
-      final response = await _dio.post(
+      final response = await dio.post(
         ApiEndpoints.refreshToken,
       );
       final BaseResponseDto<LogInResponseDto> data =
@@ -123,18 +123,18 @@ class _TokenInterceptor extends Interceptor {
         stackTrace,
       );
     } finally {
-      _dio.options.headers = null;
+      dio.options.headers = null;
     }
   }
 
   Future<Response> _retry(RequestOptions requestOptions) async {
-    final Dio _dio = NetworkService.authenticated().dio;
+    final Dio dio = NetworkService.authenticated().dio;
     final options = Options(
       method: requestOptions.method,
       headers: requestOptions.headers,
     );
 
-    final response = await _dio.request(
+    final response = await dio.request(
       requestOptions.path,
       data: requestOptions.data,
       queryParameters: requestOptions.queryParameters,
