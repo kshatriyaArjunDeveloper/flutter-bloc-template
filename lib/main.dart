@@ -2,20 +2,32 @@ import 'dart:async';
 
 import 'package:boilerplate/router/app_routes.dart';
 import 'package:boilerplate/router/go_route.dart';
+import 'package:boilerplate/services/firebase_service.dart';
 import 'package:boilerplate/services/local_db_service.dart';
 import 'package:boilerplate/theme/app_fonts.dart';
 import 'package:boilerplate/utility/logs/sentry_log_utility.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  // todo @Project Setup: Write your own code to handle background messages
+  print('DEBUG: Handling a background message: ${message.notification?.title}');
+}
+
 Future<void> main() async {
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
     await dotenv.load(fileName: "asset/.env");
     await LocalDbService.instance.initializeDb();
+    await FirebaseService().setup();
+    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
     await SentryFlutter.init(
       (options) {
         options.dsn = dotenv.env['SENTRY_DSN'];
