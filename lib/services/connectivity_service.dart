@@ -1,8 +1,7 @@
+import 'package:boilerplate/utility/logs/sentry_log_utility.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 
 class ConnectivityService {
-  final Connectivity _connectivity = Connectivity();
-
   // Making Singleton
   ConnectivityService._();
 
@@ -11,7 +10,13 @@ class ConnectivityService {
   factory ConnectivityService() => _instance;
 
   Future<bool> isNetworkAvailable() async {
-    final connectivity = await _connectivity.checkConnectivity();
-    return connectivity != ConnectivityResult.none;
+    try {
+      final connectivity = await Connectivity().checkConnectivity();
+      return connectivity.isNotEmpty &&
+          connectivity.any((result) => result != ConnectivityResult.none);
+    } catch (error, stackTrace) {
+      captureSentryException(error, stackTrace);
+      return true;
+    }
   }
 }

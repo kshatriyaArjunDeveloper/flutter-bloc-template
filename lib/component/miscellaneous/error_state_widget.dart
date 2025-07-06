@@ -26,7 +26,7 @@ class ErrorStateWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image_(
-          localSvgAsset: illustrationPath,
+          assetName: illustrationPath,
           height: 200,
         ),
         Gap(24.h),

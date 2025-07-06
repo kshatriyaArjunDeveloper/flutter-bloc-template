@@ -70,7 +70,7 @@ class LocalNotificationService {
   ) async {
     // todo @Project Setup: Write your own code to handle on click of local notification
     print(
-        'DEBUG Local Notification was tapped with payload: ${notificationResponse.payload.toString()}');
+        'DEBUG: Local Notification was tapped with payload: ${notificationResponse.payload.toString()}');
   }
 
   // todo @Project Setup: Write your own code to show local notification
