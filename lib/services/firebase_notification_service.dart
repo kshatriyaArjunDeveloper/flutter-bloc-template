@@ -29,7 +29,7 @@ class FirebaseNotificationService {
     _messaging!.getToken().then((token) {
       UserLocalDataSource().saveFcmToken(token);
       // todo @Project Setup: Write your own code to handle fcm token
-      print('DEBUG FCM Token: $token');
+      print('DEBUG: FCM Token: $token');
     });
   }
 
