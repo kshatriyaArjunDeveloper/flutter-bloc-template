@@ -8,15 +8,15 @@ part 'select_language_cubit.freezed.dart';
 part 'select_language_state.dart';
 
 class SelectLanguageCubit extends Cubit<SelectLanguageState> {
-  final MiscellaneousRepository _miscellaneousRepository =
-      MiscellaneousRepository();
+  late final MiscellaneousRepository _miscellaneousRepository;
 
-  SelectLanguageCubit()
+  SelectLanguageCubit({required MiscellaneousRepository miscellaneousRepository})
       : super(
           SelectLanguageState(
             screenState: LoadingState(),
           ),
         ) {
+    _miscellaneousRepository = miscellaneousRepository;
     getAllLanguages();
   }
 

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:boilerplate/data/data_source/local_data_source/user_local_data_source.dart';
+import 'package:boilerplate/services/di_service.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 import 'local_notification_service.dart';
@@ -27,7 +28,7 @@ class FirebaseNotificationService {
   void _initializeFirebaseMessaging() {
     _messaging ??= FirebaseMessaging.instance;
     _messaging!.getToken().then((token) {
-      UserLocalDataSource().saveFcmToken(token);
+      getIt<UserLocalDataSource>().saveFcmToken(token);
       // todo @Project Setup: Write your own code to handle fcm token
       print('DEBUG: FCM Token: $token');
     });

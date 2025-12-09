@@ -4,19 +4,13 @@ import 'package:boilerplate/services/local_db_service.dart';
 import 'package:isar/isar.dart';
 
 class UserLocalDataSource {
-  final IsarCollection _isarAuth = LocalDbService.instance.isar.authTokenModels;
-  final IsarCollection _isarDeviceInfo =
-      LocalDbService.instance.isar.deviceInfoModels;
+  final IsarCollection _isarAuth;
+  final IsarCollection _isarDeviceInfo;
 
-  // Making Singleton
-  UserLocalDataSource._();
-
-  static UserLocalDataSource? _instance;
-
-  factory UserLocalDataSource() {
-    _instance ??= UserLocalDataSource._();
-    return _instance!;
-  }
+  UserLocalDataSource({
+    required LocalDbService localDbService,
+  })  : _isarAuth = localDbService.isar.authTokenModels,
+        _isarDeviceInfo = localDbService.isar.deviceInfoModels;
 
   Future<void> saveAuthToken(AuthTokenModel authTokenModel) async {
     await _isarAuth.isar.writeTxn(() async {

@@ -1,8 +1,10 @@
+import 'package:boilerplate/data/repository/miscellaneous_repository.dart';
 import 'package:boilerplate/presentation/dashboard_module/home_screen/bloc/home_screen_cubit.dart';
 import 'package:boilerplate/presentation/dashboard_module/home_screen/home_screen.dart';
 import 'package:boilerplate/presentation/delete_module/select_language_screen/bloc/select_language_cubit.dart';
 import 'package:boilerplate/presentation/delete_module/select_language_screen/select_language_screen.dart';
 import 'package:boilerplate/presentation/miscellaneous_module/widget_screen/widget_screen.dart';
+import 'package:boilerplate/services/di_service.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -25,7 +27,11 @@ final GoRouter goRouter = GoRouter(
       path: AppRoutes.homeScreen,
       builder: (context, state) => BlocProvider(
         create: (BuildContext context) {
-          return HomeScreenCubit();
+          return HomeScreenCubit(
+            paymentProcessor: getIt<PaymentProcessor>(
+              instanceName: 'stripe'
+            ),
+          );
         },
         child: const HomeScreen(),
       ),
@@ -35,7 +41,9 @@ final GoRouter goRouter = GoRouter(
         builder: (context, state) {
           return BlocProvider(
             create: (context) {
-              return SelectLanguageCubit();
+              return SelectLanguageCubit(
+                miscellaneousRepository: getIt<MiscellaneousRepository>(),
+              );
             },
             child: const SelectLanguageScreen(),
           );

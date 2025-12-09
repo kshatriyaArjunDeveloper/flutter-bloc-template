@@ -30,8 +30,6 @@ class SelectLanguageCard extends StatelessWidget {
     String? alpha;
     if (language == 'German') {
       final List<String> stringList = alphabets.split(']');
-      List<int> listOfInts = List<int>.from(jsonDecode('${stringList.first}]'));
-      alpha = utf8.decode(listOfInts) + stringList.last;
     }
     return Container_(
       allCornerRadius: 12,

@@ -4,6 +4,7 @@ import 'package:boilerplate/data/dto/response_dto/base_response_dto.dart';
 import 'package:boilerplate/domain/model/user/auth_token_model.dart';
 import 'package:boilerplate/router/app_routes.dart';
 import 'package:boilerplate/router/go_route.dart';
+import 'package:boilerplate/services/di_service.dart';
 import 'package:boilerplate/utility/network/exception_handler.dart';
 import 'package:boilerplate/utility/network/result.dart';
 import 'package:boilerplate/values/network_constants.dart';
@@ -61,7 +62,7 @@ class NetworkService {
 }
 
 class _TokenInterceptor extends Interceptor {
-  final UserLocalDataSource _userLocalDataSource = UserLocalDataSource();
+  UserLocalDataSource get _userLocalDataSource => getIt<UserLocalDataSource>();
 
   @override
   Future<void> onRequest(

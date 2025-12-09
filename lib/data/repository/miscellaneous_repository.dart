@@ -3,18 +3,11 @@ import 'package:boilerplate/data/dto/response_dto/delete_dto/language_response_d
 import 'package:boilerplate/utility/network/result.dart';
 
 class MiscellaneousRepository {
-  final MiscellaneousRemoteDataSource remoteDataSource =
-      MiscellaneousRemoteDataSource();
+  final MiscellaneousRemoteDataSource remoteDataSource;
 
-  // Making Singleton
-  MiscellaneousRepository._();
-
-  static MiscellaneousRepository? _instance;
-
-  factory MiscellaneousRepository() {
-    _instance ??= MiscellaneousRepository._();
-    return _instance!;
-  }
+  MiscellaneousRepository({
+    required this.remoteDataSource,
+  });
 
   Future<Result<List<LanguageResponseDto>>> getAllLanguages() async =>
       await remoteDataSource.fetchAllLanguages();

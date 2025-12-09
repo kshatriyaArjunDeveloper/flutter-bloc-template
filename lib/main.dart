@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:boilerplate/router/app_routes.dart';
 import 'package:boilerplate/router/go_route.dart';
+import 'package:boilerplate/services/di_service.dart';
 import 'package:boilerplate/services/firebase_service.dart';
 import 'package:boilerplate/services/local_db_service.dart';
 import 'package:boilerplate/theme/app_fonts.dart';
@@ -26,6 +27,7 @@ Future<void> main() async {
     WidgetsFlutterBinding.ensureInitialized();
     await dotenv.load(fileName: "asset/.env");
     await LocalDbService.instance.initializeDb();
+    configureDependencies();
     await FirebaseService().setup();
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
     await SentryFlutter.init(
